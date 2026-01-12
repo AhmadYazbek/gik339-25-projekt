@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <!-- Grundläggande metadata -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Titel på sidan -->
+    <title>Projekt Grupp 25</title>
+
+    <!-- Bootstrap CSS för styling och responsiv layout -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon-fix för att undvika console-varningar -->
+    <link rel="icon" href="data:," />
+  </head>
+
+  <body class="bg-light">
+    <!-- Enkel navbar högst upp på sidan -->
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <span class="navbar-brand">Projekt Grupp 25 – Filmer</span>
+      </div>
+    </nav>
+
+    <!-- Huvudinnehåll -->
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Formulär för att skapa och uppdatera filmer -->
+        <div class="col-md-6">
+          <form id="filmForm" class="mb-4">
+            <h5 class="mb-3">Lägg till / uppdatera film</h5>
+
+            <!-- Titel -->
+            <div class="mb-2">
+              <label class="form-label">Titel</label>
+              <input
+                id="titelInput"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <!-- Genre -->
+            <div class="mb-2">
+              <label class="form-label">Genre</label>
+              <input
+                id="genreInput"
+                type="text"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <!-- Årtal -->
+            <div class="mb-2">
+              <label class="form-label">År</label>
+              <input id="arInput" type="number" class="form-control" required />
+            </div>
+
+            <!-- Betyg (tillåter decimaler) -->
+            <div class="mb-3">
+              <label class="form-label">Betyg (0–10)</label>
+              <input
+                id="betygInput"
+                type="number"
+                step="0.1"
+                min="0"
+                max="10"
+                class="form-control"
+                required
+              />
+            </div>
+
+            <!-- Knappar för submit och reset -->
+            <button type="submit" class="btn btn-primary">Spara</button>
+            <button type="reset" class="btn btn-secondary">Rensa</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Här renderas listan med filmer dynamiskt via JavaScript -->
+      <div class="row" id="filmList"></div>
+    </div>
+
+    <!-- Modal som visar feedback vid skapa, uppdatera och borttagning -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Meddelande</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Texten i modalen sätts dynamiskt i script.js -->
+          <div class="modal-body" id="modalMessage"></div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Stäng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal för att bekräfta borttagning av film -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger">Bekräfta borttagning</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Säkerhetsfråga för att undvika oavsiktlig borttagning -->
+          <div class="modal-body">
+            Är du säker på att du vill ta bort filmen?
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Avbryt
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+              Ta bort
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (krävs för modaler och komponenter) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Egen JavaScript-fil -->
+    <script src="script.js"></script>
+  </body>
+</html>
